@@ -1,3 +1,5 @@
+<?php include 'sql.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,42 +28,72 @@
         <div class="col-3">
           <label for="motives">Motivos:</label>
           <select id="motives" class="form-control" required>
-            <option value="" disabled selected>Añadir Motivo</option>
+            <option value="" disabled selected>Seleccione Motivo</option>
+            <?php
+            $sql = "SELECT DISTINCT Motivo FROM `motivos`";
+            $result = $conn->query($sql);
+            getOptions($result, $colName = "Motivo");
+            ?>
           </select>
         </div>
   
         <div class="col-3">
           <label for="nationality">Nacionalidad:</label>
           <select id="nationality" class="form-control" required>
-           <option value="" disabled selected>Añadir País</option>
+           <option value="" disabled selected>Seleccione País</option>
+           <?php
+            $sql = "SELECT DISTINCT Nombre FROM `pais`";
+            $result = $conn->query($sql);
+            getOptions($result, $colName = "Nombre");
+            ?>
           </select>
         </div>
     
         <div class="col-3">
           <label for="residence">Residencia:</label>
           <select id="residence" class="form-control" required>
-            <option value="" disabled selected>Añadir País</option>
+            <option value="" disabled selected>Seleccione País</option>
+            <?php
+            $sql = "SELECT DISTINCT Nombre FROM `pais`";
+            $result = $conn->query($sql);
+            getOptions($result, $colName = "Nombre");
+            ?>
           </select>
         </div>
   
         <div class="col-3">
           <label for="language">Lenguas:</label>
           <select id="language" class="form-control" required>
-            <option value="" disabled selected>Añadir Idiomas</option>
+            <option value="" disabled selected>Seleccione Idiomas</option>
+            <?php
+            $sql = "SELECT DISTINCT Nombre FROM `lenguaje`";
+            $result = $conn->query($sql);
+            getOptions($result, $colName = "Nombre");
+            ?>
           </select>
         </div>
   
         <div class="col-3">
           <label for="freq">Frecuencia:</label>
           <select id="freq" class="form-control" required>
-            <option value="" disabled selected>Añadir Frecuencia</option>
+            <option value="" disabled selected>Seleccione Frecuencia</option>
+            <?php
+            $sql = "SELECT DISTINCT Rango FROM `frec_visita`";
+            $result = $conn->query($sql);
+            getOptions($result, $colName = "Rango");
+            ?>
           </select>
         </div>
   
         <div class="col-3">
           <label for="studies">Estudios:</label>
           <select id="studies" class="form-control" required>
-            <option value="" disabled selected>Añadir Estudios</option>
+            <option value="" disabled selected>Seleccione Estudios</option>
+            <?php
+            $sql = "SELECT DISTINCT Grado FROM `escolaridad`";
+            $result = $conn->query($sql);
+            getOptions($result, $colName = "Grado");
+            ?>
           </select>
         </div>
 
@@ -72,8 +104,12 @@
       </form>
     </div>
 
-    <div class="container m-3 p-3 bigbox filters">
-      
+    <div class="container m-3 p-3 filters">
+      <table class="table table-borderless">
+        <tr>
+
+        </tr>
+      </table>
     </div>
 
     <div class="container text-center m-3 p-3 bigbox stats">
@@ -96,6 +132,28 @@
 
         <div class="col-3">
           Motivo
+        </div>
+      </div>
+    </div>
+
+    <div class="container m-3 p-3 bigbox">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#visits">Visitas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#countries">País</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="container tab-pane active" id="visits">
+          <table class="table table-bordered">
+
+          </table>
+        </div>
+        <div class="container tab-pane fade" id="countries">
+          mundo
         </div>
       </div>
     </div>
