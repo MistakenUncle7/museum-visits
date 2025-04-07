@@ -24,6 +24,7 @@ h1 {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-top: 32px;
 }
 
 .filters {
@@ -38,6 +39,23 @@ h1 {
     border-radius: 15px;
     font-weight: bold;
     color: black;
-    /* display: flex;
-    flex-direction: row; */
+}
+
+.btns {
+    display: flex;
+    justify-content:flex-end;
+    gap: 16px;;
+}
+
+.col-small {
+    width: 10%;
+}
+
+.col-large {
+    width: 90%;
+}
+
+.container .table-borderless {
+    margin-bottom: 0px;
+    background-color: rgb(206, 205, 195) !important;
 }
