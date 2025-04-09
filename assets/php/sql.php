@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 // Conection data
 $host = 'localhost';
 $user = 'root'; 
-$password = 'root'; 
+$password = ''; 
 $database = 'panteras';
 
 // Create conection

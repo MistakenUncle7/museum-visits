@@ -26,8 +26,8 @@ const selectedFilters = {};
 // Function to add a filter button to the table filters
 function addFilter(selectId, filterName) {
     // Get the selected value from the <select> element
-    const selectElement = document.getElementById(selectId);
-    const selectedValue = selectElement.value;
+    const selectedElement = document.getElementById(selectId);
+    const selectedValue = selectedElement.value;
 
     // Get the corresponding <td> element in the table
     const tableTd = document.querySelector(`td[data-filter="${filterName}"]`);
@@ -69,7 +69,7 @@ function addFilter(selectId, filterName) {
     // Append the button to the <td>
     tableTd.appendChild(button);
 
-    console.log("Selected filters:", selectedFilters);
+    console.log(selectedFilters);
 }
 
 function makeQuery() {
@@ -88,21 +88,44 @@ function makeQuery() {
 
     console.log("Filters for query:", filters);
 
+    let filtros = [];
+    Object.keys(selectedFilters).forEach((f) => {
+        switch(f){
+            case "Motivos":
+                filtros.push("motivos.Motivo in ('"+selectedFilters[f].join("','")+"')");
+            break;
+            case "Frecuencia":
+                filtros.push("frec_visita.Nombre in ('"+selectedFilters[f].join("','")+"')");
+            break;
+
+        }
+    });
+    filtros = " where "+filtros.join(" and ");
+
+    console.log(filtros);0
+
     // Send the filters to the server
     fetch("assets/php/process_form.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(filters)
+        body: JSON.stringify(filtros)
     })
     .then((response) => response.json())
     .then((data) => {
+        
+        // Update the table with the data
+        updateTable(data); //[{'sexo':'F','nacionalidad':2,'escolaridad':1},{'sexo':'M','nacionalidad':15,'escolaridad':4}]
+
+        let resultados = {'nacionales':0,'extranjeros':0,'total_visitas':0,'lengua_mas_hablada':{},'motivo_mas_frecuente':{}};
+        data.forEach((row) => {
+            //{'sexo':'F','nacionalidad':2,'escolaridad':1}
+            resultados[row.lengua]++; //-> {'español':0,'ingles':15,'frances':7}
+        });
+
         // Update the stats section with the response
         updateStats(data);
-
-        // Update the table with the data
-        updateTable(data);
     })
     .catch((error) => console.error("Error:", error));
 }
