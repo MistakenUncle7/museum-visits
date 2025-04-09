@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 // Conection data
 $host = 'localhost';
 $user = 'root'; 
-$password = ''; 
+$password = 'root'; // In Wamp it is ''
 $database = 'panteras';
 
 // Create conection

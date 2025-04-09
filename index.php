@@ -42,9 +42,9 @@
           <select id="nationality" name="nationality" class="form-control" required onchange="addFilter('nationality', 'Nacionalidad')">
            <option value="" disabled selected>Seleccione País</option>
            <?php
-            $sql = "SELECT DISTINCT Nombre FROM `pais`";
+            $sql = "SELECT DISTINCT Gentilicio FROM `pais`";
             $result = $conn->query($sql);
-            getOptions($result, "Nombre");
+            getOptions($result, "Gentilicio");
             ?>
           </select>
         </div>
@@ -192,13 +192,40 @@
         <div class="container tab-pane active" id="visits">
           <table class="table table-hover">
             <thead>
+              <th>Sexo</th>
+              <th>Edad</th>
+              <th>País de residencia</th>
+              <th>Nacionalidad</th>
+              <th>Estudios</th>
+              <th>Grado</th>
+              <th>1ra Lengua</th>
+              <th>2da Lengua</th>
+              <th>Frecuancia</th>
+              <th>Motivo de Visita</th>
+              <th>Medio de Transporte</th>
+              <th>Tiempo de Traslado</th>
+              <th>Tipo de Acompañante</th>
+              <th>Tamaño del Grupo</th>
+              <th>Menores de 12 en el Grupo</th>
             </thead>
-            <tbody>
+            <tbody id="country-table">
               
             </tbody>
           </table>
         </div>
         <div class="container tab-pane fade" id="countries">
+          <table class="table table-hover">
+            <thead>
+              <th>País</th>
+              <th>Residentes</th>
+              <th>Nacionales</th>
+              <th>Frecuencia de Residentes</th>
+              <th>Motivo de Residentes</th>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

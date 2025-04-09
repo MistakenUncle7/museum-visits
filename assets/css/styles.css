@@ -58,3 +58,7 @@ h1 {
     margin-bottom: 0px;
     background-color: rgb(206, 205, 195) !important;
 }
+
+.tab-content .container {
+    padding: 0;
+}
